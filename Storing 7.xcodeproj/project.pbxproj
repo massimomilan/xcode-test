@@ -195,6 +195,7 @@
 				TargetAttributes = {
 					505A1F311B5706D10082B84D = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = ESRNH74CR7;
 					};
 					505A1F481B5706D10082B84D = {
 						CreatedOnToolsVersion = 7.0;
@@ -400,7 +401,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Storing 7/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.massimomian.Storing-7";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -411,7 +414,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Storing 7/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.massimomian.Storing-7";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -485,6 +490,7 @@
 				505A1F5F1B5706D10082B84D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		505A1F601B5706D10082B84D /* Build configuration list for PBXNativeTarget "Storing 7Tests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +499,7 @@
 				505A1F621B5706D10082B84D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		505A1F631B5706D10082B84D /* Build configuration list for PBXNativeTarget "Storing 7UITests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +508,7 @@
 				505A1F651B5706D10082B84D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
