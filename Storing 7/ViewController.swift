@@ -18,6 +18,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // ciao
+        
         var captureSession:AVCaptureSession?
 
         
