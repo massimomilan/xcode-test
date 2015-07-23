@@ -113,6 +113,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             let response = NSString(data: data!, encoding: NSUTF8StringEncoding)
             print("response \(response)")
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         }
         
         task!.resume()
