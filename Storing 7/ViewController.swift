@@ -14,23 +14,24 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     @IBOutlet weak var label: UILabel!
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
+    var captureSession = AVCaptureSession()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        var captureSession:AVCaptureSession?
+        // var captureSession:AVCaptureSession?
 
         
         let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
 
         let input: AnyObject! = try! AVCaptureDeviceInput.init(device: captureDevice) as AVCaptureDeviceInput
         
-        captureSession = AVCaptureSession()
-        captureSession?.addInput(input as! AVCaptureInput)
+        captureSession.addInput(input as! AVCaptureInput)
         
         let captureMetadataOutput = AVCaptureMetadataOutput()
-        captureSession?.addOutput(captureMetadataOutput)
+        captureSession.addOutput(captureMetadataOutput)
         
         captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
         captureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
@@ -41,7 +42,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         videoPreviewLayer?.frame = view.layer.bounds
         view.layer.addSublayer(videoPreviewLayer!)
 
-        captureSession?.startRunning()
+        captureSession.startRunning()
         
         view.bringSubviewToFront(label)
         
@@ -79,8 +80,31 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         if metadataObj.type == AVMetadataObjectTypeQRCode {
             let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj as AVMetadataMachineReadableCodeObject) as!AVMetadataMachineReadableCodeObject
             qrCodeFrameView?.frame = barCodeObject.bounds;
+            
+            
+            
             if metadataObj.stringValue != nil {
                 label.text = metadataObj.stringValue
+                
+                let token = NSURL(string: label.text!)?.lastPathComponent
+                let installationId = NSUserDefaults.standardUserDefaults().stringForKey("installationId")
+                
+                let request = "https://authid.asp.lifeware.ch/v0App/authenticateBarcode?barcodeToken=\(token!)&installationId=\(installationId!)"
+                let url = NSURL(string: request)
+                
+                
+                let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+                    let response = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                    print("response \(response)")
+                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                }
+                captureSession.stopRunning()
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1000000000), dispatch_get_main_queue()) {
+                    self.qrCodeFrameView?.frame = CGRectZero
+                    self.captureSession.startRunning()
+                }
+                task!.resume()
+
             }
         }
     }
@@ -102,22 +126,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     @IBAction func tapped(sender: UITapGestureRecognizer) {
-        let label = sender.view as! UILabel
-        let token = NSURL(string: label.text!)?.lastPathComponent
-        let installationId = NSUserDefaults.standardUserDefaults().stringForKey("installationId")
-
-        let request = "https://authid.asp.lifeware.ch/v0App/authenticateBarcode?barcodeToken=\(token!)&installationId=\(installationId!)"
-        let url = NSURL(string: request)
-        
-        
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
-            let response = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            print("response \(response)")
-            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-        }
-        
-        task!.resume()
-
     }
     
     override func didReceiveMemoryWarning() {

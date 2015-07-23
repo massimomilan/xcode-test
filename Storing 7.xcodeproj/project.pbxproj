@@ -195,7 +195,7 @@
 				TargetAttributes = {
 					505A1F311B5706D10082B84D = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = KWA83Y5U85;
+						DevelopmentTeam = ESRNH74CR7;
 					};
 					505A1F481B5706D10082B84D = {
 						CreatedOnToolsVersion = 7.0;
@@ -406,7 +406,7 @@
 				INFOPLIST_FILE = "Storing 7/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.self.Storing-7";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.massimomian.Storing-7";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -421,7 +421,7 @@
 				INFOPLIST_FILE = "Storing 7/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.self.Storing-7";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.massimomian.Storing-7";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
