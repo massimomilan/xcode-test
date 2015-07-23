@@ -18,7 +18,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // ciao
         
         var captureSession:AVCaptureSession?
 
@@ -58,7 +57,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             label.text = id
         }
         else {
-            let url = NSURL(string: "https://authidtest.asp.lifeware.ch/v0App/newInstallation?deviceName=iphone6")
+            let url = NSURL(string: "https://authid.asp.lifeware.ch/v0App/newInstallation?deviceName=iphone6")
             let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
                 let id = NSString(data: data!, encoding: NSUTF8StringEncoding)
                 NSUserDefaults.standardUserDefaults().setObject(id, forKey: "installationId")
@@ -107,7 +106,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         let token = NSURL(string: label.text!)?.lastPathComponent
         let installationId = NSUserDefaults.standardUserDefaults().stringForKey("installationId")
 
-        let request = "https://authidtest.asp.lifeware.ch/v0App/authenticateBarcode?barcodeToken=\(token!)&installationId=\(installationId!)"
+        let request = "https://authid.asp.lifeware.ch/v0App/authenticateBarcode?barcodeToken=\(token!)&installationId=\(installationId!)"
         let url = NSURL(string: request)
         
         
